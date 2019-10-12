@@ -35,8 +35,8 @@ Add below Maven dependency to your project.
 
 Depending on what features you use from this SDK you also need to add dependencies to certain AWS SDKs dedicated to S3, DynamoDb or IoT.
 
-This SDK can __save you hundreds of lines of code__. See following examples where
-you can see how to manage state of your prepared POJO model (referred as _AlexaStateModel_) or just single
+This SDK can __save you hundreds of lines of code__. See the following examples where
+you can see how to manage the state of your prepared POJO model (referred as _AlexaStateModel_) or just single
 values.
 
 ### Managing Alexa session state in _Alexa Session_
@@ -83,7 +83,7 @@ state in whatever you want to use.
 
 Each model declares on its own what is saved and even can decide on what scope is
 used to read and write attributes. That is how you can __not only save state per
-user but also per application__ for e.g. managing the highscore of your game skill.
+user but also per application__ for e.g. managing the high score of your game skill.
 
 Now you will learn how to pimp your Alexa skill with permanent state capability
 in minutes.
@@ -109,7 +109,7 @@ public class User extends AlexaStateModel {
 Optionally you can give each member a scope so you can decide on the context
 the value is saved. Where _personalHighscore_ is persisted per _USER_ on a permanent basis,
 _currentScore_ will only be saved throughout one Alexa session.
-Instead of white-listing members of your model you can also black-list them
+Instead of white-listing members of your model, you can also black-list them
 if tagging the whole model as _AlexaStateSave_
 ```java
 @AlexaStateSave(Scope = AlexaScope.APPLICATION)
@@ -121,7 +121,7 @@ public class QuizGame extends AlexaStateModel {
     // ...
 }
 ```
-Wow, there is the third scope _APPLICATION_ you can use to let
+Wow, there is the third scope _APPLICATION_ you can use to let the
 state of your models be valid throughout all users in all sessions. The
 _highscore_ value will be shared amongst all users of your skill whereas
 the _level_ is ignored and will not persist in your session.
@@ -176,7 +176,7 @@ final AlexaStateHandler ioth1 = new AWSIoTStateHandler(session, new AWSIotClient
 ## 3) Create an instance of your model
 So you got your POJO model and also your preferred state handler. They now need
 to get introduced to each other. The most convenient way is to instantiate
-your model with help of the state handler. Of course you can construct your model
+your model with the help of the state handler. Of course, you can construct your model
 as you like and set the handler later on.
 ```java
 final User bob = handler.createModel(User.class, "Bob");
@@ -191,9 +191,9 @@ as _APPLICATION_ and is shared with all users of your skill. Moreover, the
 second approach won't let you deal with identifiers.
 
 ## 4) Save state of your model or single value
-Continuing from above lines we now assign some values to _bob_ and set a
-new highscore in the _game_. But nothing will be persisted until you tell
-your model to save its state. There are two alternatives of doing so:
+Continuing from the above lines we now assign some values to _bob_ and set a
+new high score in the _game_. But nothing will be persisted until you tell
+your model to save its state. There are two alternatives for doing so:
 ```java
 // save state from within your model
 bob.setPersonalHighscore(100);
@@ -237,7 +237,7 @@ dynamoHandler.writeModels(bob, john, abby);
 
 ## 5) Read state of your model or single value
 So real Bob is leaving his Echo for a week. After some days he's asking
-your skill again what's his personal highscore. As your skill is pimped with the State SDK
+your skill again what's his personal high score. As your skill is pimped with the State SDK
 it just needs to read out _bob_ over the same handler it was saved back then.
 ```java
 final Optional<User> bob = handler.readModel(User.class, "Bob");
